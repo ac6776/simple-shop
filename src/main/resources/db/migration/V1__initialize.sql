@@ -13,4 +13,12 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO products (title, cost)
 VALUES
-('Хлеб', 30), ('Молоко', 50);
+('TV', 30.99),
+('Smartphone', 749.99),
+('Bicycle', 2499.99),
+('Camera', 349.49),
+('Game Console', 250.0),
+('Guitar', 1499.49),
+('Helmet', 999.99),
+('Sunglasses', 145.0),
+('Hummer', 9.99);
