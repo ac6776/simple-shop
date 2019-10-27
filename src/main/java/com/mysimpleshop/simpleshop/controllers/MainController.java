@@ -16,8 +16,18 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String showHomePage(Model model){
-        model.addAttribute("products", productsService.findAllProducts());
+    public String showHomePage(){
         return "index";
+    }
+
+    @GetMapping("/products")
+    public String showProductsPage(Model model){
+        model.addAttribute("products", productsService.findAllProducts());
+        return "products";
+    }
+    @GetMapping("/add")
+    public String showAddProductPage(){
+//        model.addAttribute("products", productsService.findAllProducts());
+        return "add-product";
     }
 }

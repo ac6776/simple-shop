@@ -3,6 +3,7 @@ package com.mysimpleshop.simpleshop.services;
 import com.mysimpleshop.simpleshop.entities.Product;
 import com.mysimpleshop.simpleshop.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,6 @@ public class ProductsService {
     }
 
     public List<Product> findAllProducts(){
-        return (List<Product>) productsRepository.findAll();
+        return (List<Product>) productsRepository.findAll(Sort.by("cost"));
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+
+        <title>Стартовая страница</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+    </head>
+
+    <body>
+
+        <div th:replace="~{navigation :: navbar(AddProduct)}" />
+
+        <div class="container">
+            <h1>Добавление продукта</h1>
+            <form>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Наименование товара">
+                            <small class="form-text text-muted">Введите наименование</small>
+                        </div>
+
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Цена">
+                            <small class="form-text text-muted">Введите цену</small>
+                        </div>
+                        <div class="col">
+                             <button type="submit" class="btn btn-primary">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+
+    </body>
+</html>
