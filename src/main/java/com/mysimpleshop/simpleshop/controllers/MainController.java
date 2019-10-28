@@ -43,6 +43,13 @@ public class MainController {
         model.addAttribute("products", productsService.findAllProducts());
         return "all-products";
     }
+
+    @PostMapping("/products/all")
+    public String showProductsBetweenMaxAndMin(Model model, @RequestParam("min") Double min, @RequestParam("max") Double max){
+        model.addAttribute("products", productsService.findProductsBetweenMinAndMax(min, max));
+        return "all-products";
+    }
+
     @GetMapping("/add")
     public String addProductPage(Model model){
         Product product = new Product();

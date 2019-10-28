@@ -38,4 +38,8 @@ public class ProductsService {
     public Product findById(Long id){
         return productsRepository.findById(id).get();
     }
+
+    public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
+        return productsRepository.findByCostBetween(min, max);
+    }
 }

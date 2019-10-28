@@ -19,6 +19,22 @@
                 <br>
                 <h1>Все продукты</h1>
 
+                <form th:action="@{/products/all}" method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" th:name="min" class="form-control" placeholder="Минимальное значение">
+                            </div>
+                            <div class="col">
+                                <input type="text" th:name="max" class="form-control" placeholder="Максимальное значение">
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Показать</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
