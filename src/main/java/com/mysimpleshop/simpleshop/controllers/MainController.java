@@ -59,6 +59,7 @@ public class MainController {
 
     @PostMapping("/add")
     public String addProduct(Model model, @ModelAttribute("product") Product product){
+//        model.addAttribute("product", productsService.findById(id));
         productsService.saveOrUpdate(product);
         return "redirect:/products/all";
     }
@@ -67,5 +68,21 @@ public class MainController {
     public String showInfoPage(Model model, @PathVariable("sid") Long id){
         model.addAttribute("product", productsService.findById(id));
         return "about";
+    }
+
+
+
+    @GetMapping("/edit")
+    public String editProductPage(Model model){
+//        Product product = new Product();
+//        model.addAttribute("product", product);
+        return "add-product";
+    }
+
+    @PostMapping("/edit")
+    public String editProduct(Model model, @RequestParam("product.id") Long id, @ModelAttribute("product") Product product){
+//        model.addAttribute("product", productsService.findById(id));
+        productsService.saveOrUpdate(product);
+        return "redirect:/products/all";
     }
 }
