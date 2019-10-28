@@ -13,19 +13,17 @@
     <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
 </head>
 
-<body>
+    <body>
+        <div th:replace="~{navigation :: navbar(About)}" />
 
-<div class="container">
-    <br>
-    <h1>Информация о продукте</h1>
+        <div class="container">
+            <br>
+            <h1>Информация о продукте</h1>
 
-    <span th:text="${'ID: '} + ${product.id}" /><br>
-    <span th:text="${'Название: '} + ${product.title}" /><br>
-    <span th:text="${'Цена: '} + ${product.cost}" /><br>
+            <span th:text="${'ID: '} + ${product.id}" /><br>
+            <span th:text="${'Название: '} + ${product.title}" /><br>
+            <span th:text="${'Цена: '} + ${product.cost}" /><br>
 
-    <a th:href="@{'/'}"/>Back to Main Page</a>
-<!--    <span th:text="${'First disk title: ' + disks.get(0).title}" />-->
-</div>
-
-</body>
+        </div>
+    </body>
 </html>

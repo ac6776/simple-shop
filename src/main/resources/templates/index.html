@@ -18,10 +18,16 @@
         <div th:replace="~{navigation :: navbar(Home)}" />
         <div class="container">
             <h1>Главная страница Simple-Shop</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium assumenda culpa cumque dicta doloremque eaque facilis inventore ipsam laboriosam officiis perspiciatis placeat quae quas, quia quos unde velit vero.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium assumenda culpa cumque dicta doloremque eaque facilis inventore ipsam laboriosam officiis perspiciatis placeat quae quas, quia quos unde velit vero.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium assumenda culpa cumque dicta doloremque eaque facilis inventore ipsam laboriosam officiis perspiciatis placeat quae quas, quia quos unde velit vero.</p>
-        </div>
 
+            <p th:each = "i : ${#numbers.sequence(1, 4)}">
+                <span th:text = "'Paragraph #: ' + ${i}" class="text-muted"></span>
+                <strong>
+                    <span th:text = "' Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate dignissimos earum nobis possimus quae quis repudiandae! Consequatur deleniti ducimus enim excepturi exercitationem, fugiat fugit ipsa optio rem voluptatem voluptatum.'">
+
+                    </span>
+                </strong>
+            </p>
+
+        </div>
     </body>
 </html>

@@ -2,11 +2,13 @@ package com.mysimpleshop.simpleshop.entities;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table (name = "products")
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     @Column
     private Long id;
 
@@ -38,5 +40,9 @@ public class Product {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public Product(){
+
     }
 }

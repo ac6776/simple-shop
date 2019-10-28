@@ -19,16 +19,15 @@
 
         <div class="container">
             <h1>Добавление продукта</h1>
-            <form>
+            <form th:action="@{/add}" th:object="${product}" method="post">
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Наименование товара">
+                            <input type="text" th:field="*{title}" class="form-control" placeholder="Наименование товара">
                             <small class="form-text text-muted">Введите наименование</small>
                         </div>
-
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Цена">
+                            <input type="text" th:field="*{cost}" class="form-control" placeholder="Цена">
                             <small class="form-text text-muted">Введите цену</small>
                         </div>
                         <div class="col">
