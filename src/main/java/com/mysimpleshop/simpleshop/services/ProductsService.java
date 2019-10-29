@@ -32,6 +32,14 @@ public class ProductsService {
     }
 
     public Product saveOrUpdate(Product product){
+//        if(productsRepository.existsById(product.getId())){
+//            Product existedProduct = productsRepository.findById(product.getId()).get();
+//            existedProduct.setCost(product.getCost());
+//            System.out.println(existedProduct.getTitle());
+//            existedProduct.setTitle(product.getTitle());
+//            System.out.println(existedProduct.getCost());
+//            return productsRepository.findById(product.getId()).get();
+//        }
        return productsRepository.save(product);
     }
 
@@ -41,5 +49,9 @@ public class ProductsService {
 
     public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
         return productsRepository.findByCostBetween(min, max);
+    }
+
+    public void remove(Product product){
+        productsRepository.delete(product);
     }
 }

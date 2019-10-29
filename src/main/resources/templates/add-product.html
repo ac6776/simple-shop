@@ -23,7 +23,9 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <input type="text" th:field="*{title}" class="form-control" placeholder="Наименование товара">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="text" th:field="*{title}" class="form-control" placeholder="Наименование">
+<!--                            th:placeholder="${product.title == 'null'} ? 'Наименование товара' : product.title"-->
                             <small class="form-text text-muted">Введите наименование</small>
                         </div>
                         <div class="col">
@@ -31,7 +33,7 @@
                             <small class="form-text text-muted">Введите цену</small>
                         </div>
                         <div class="col">
-                             <button type="submit" class="btn btn-primary">Добавить</button>
+                             <button type="submit" class="btn btn-primary" th:text="${product.title == null} ? 'Добавить' : 'Изменить'"></button>
                         </div>
                     </div>
                 </div>

@@ -54,7 +54,10 @@
                         </td>
                         <td th:text="${product.cost}" />
                         <td>
-<!--                            <a th:href="@{'/about/' + ${product.id}}" th:text="info"/>-->Edit
+                            <form th:action="@{'/edit/' + ${product.id}}" method="get">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button th:formaction="@{'/rm/' + ${product.id}}" type="submit" class="btn btn-primary">Remove</button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>

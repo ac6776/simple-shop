@@ -26,7 +26,6 @@ public class MainController {
     public String showProductsByStartPage(Model model){
         model.addAttribute("products", productsService.findAllProductsPaged(0));
         model.addAttribute("pages", productsService.countPages());
-        System.out.println(productsService.countPages());
         return "redirect:/products/1";
     }
 
@@ -59,7 +58,6 @@ public class MainController {
 
     @PostMapping("/add")
     public String addProduct(Model model, @ModelAttribute("product") Product product){
-//        model.addAttribute("product", productsService.findById(id));
         productsService.saveOrUpdate(product);
         return "redirect:/products/all";
     }
@@ -70,19 +68,15 @@ public class MainController {
         return "about";
     }
 
-
-
-    @GetMapping("/edit")
-    public String editProductPage(Model model){
-//        Product product = new Product();
-//        model.addAttribute("product", product);
+    @GetMapping("/edit/{sid}")
+    public String editProductPage(Model model, @PathVariable("sid") Long id){
+        model.addAttribute("product", productsService.findById(id));
         return "add-product";
     }
 
-    @PostMapping("/edit")
-    public String editProduct(Model model, @RequestParam("product.id") Long id, @ModelAttribute("product") Product product){
-//        model.addAttribute("product", productsService.findById(id));
-        productsService.saveOrUpdate(product);
+    @GetMapping("/rm/{sid}")
+    public String removeProduct(Model model, @PathVariable("sid") Long id){
+        productsService.remove(productsService.findById(id));
         return "redirect:/products/all";
     }
 }
