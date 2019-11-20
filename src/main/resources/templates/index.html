@@ -6,8 +6,8 @@
 
         <title>Стартовая страница</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.min.css}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
@@ -17,7 +17,7 @@
 
         <div th:replace="~{navigation :: navbar(Home)}" />
         <div class="container">
-            <h1>Главная страница Simple-Shop</h1>
+            <h1 th:text="#{greeting}" />
 
             <p th:each = "i : ${#numbers.sequence(1, 4)}">
                 <span th:text = "'Paragraph #: ' + ${i}" class="text-muted"></span>

@@ -1,0 +1,20 @@
+{
+  "name": "simple-shop",
+  "version": "1.0.0",
+  "description": "my first simple shop",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap": "^4.3.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleg P",
+  "license": "ISC"
+}
