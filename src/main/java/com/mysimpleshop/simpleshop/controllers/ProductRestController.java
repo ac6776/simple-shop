@@ -41,9 +41,9 @@ public class ProductRestController {
         return productsService.saveOrUpdate(product);
     }
 
-    @DeleteMapping("/products")
-    public int deleteProduct(@RequestBody Product product){
-        return productsService.remove(product);
+    @DeleteMapping("/products/{id}")
+    public int deleteProduct(@PathVariable Long id){
+        return productsService.remove(id);
     }
 
     @ExceptionHandler

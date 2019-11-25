@@ -53,8 +53,8 @@ public class ProductsService {
         return productsRepository.findByCostBetween(min, max);
     }
 
-    public int remove(Product product){
-        productsRepository.delete(product);
+    public int remove(Long id){
+        productsRepository.deleteById(id);
         return 200;
     }
 

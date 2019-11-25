@@ -90,7 +90,7 @@ public class MainController {
 
     @GetMapping("/rm/{sid}")
     public String removeProduct(Model model, @PathVariable("sid") Long id){
-        productsService.remove(productsService.findById(id));
+        productsService.remove(id);
         return "redirect:/products/all";
     }
 }
