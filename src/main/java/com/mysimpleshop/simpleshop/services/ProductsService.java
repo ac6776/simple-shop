@@ -51,9 +51,13 @@ public class ProductsService {
         return productsRepository.findByCostBetween(min, max);
     }
 
-    public void remove(Product product){
-        productsRepository.delete(product);
-    }
+//    public void remove(Product product){
+//        productsRepository.delete(product);
+//    }
+    public int remove(Product product){
+            productsRepository.delete(product);
+            return 200;
+        }
 
     public Product findProductByTitle(String title){
         return productsRepository.findOneByTitle(title);
