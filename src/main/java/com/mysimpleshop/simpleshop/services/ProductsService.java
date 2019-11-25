@@ -2,6 +2,8 @@ package com.mysimpleshop.simpleshop.services;
 
 import com.mysimpleshop.simpleshop.entities.Product;
 import com.mysimpleshop.simpleshop.repositories.ProductsRepository;
+import com.mysimpleshop.simpleshop.utils.ProductErrorResponse;
+import com.mysimpleshop.simpleshop.utils.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,20 +46,17 @@ public class ProductsService {
     }
 
     public Product findById(Long id){
-        return productsRepository.findById(id).get();
+        return productsRepository.findById(id).orElse(null);
     }
 
     public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
         return productsRepository.findByCostBetween(min, max);
     }
 
-//    public void remove(Product product){
-//        productsRepository.delete(product);
-//    }
     public int remove(Product product){
-            productsRepository.delete(product);
-            return 200;
-        }
+        productsRepository.delete(product);
+        return 200;
+    }
 
     public Product findProductByTitle(String title){
         return productsRepository.findOneByTitle(title);

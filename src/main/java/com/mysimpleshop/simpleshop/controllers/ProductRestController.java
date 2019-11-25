@@ -2,7 +2,11 @@ package com.mysimpleshop.simpleshop.controllers;
 
 import com.mysimpleshop.simpleshop.entities.Product;
 import com.mysimpleshop.simpleshop.services.ProductsService;
+import com.mysimpleshop.simpleshop.utils.ProductErrorResponse;
+import com.mysimpleshop.simpleshop.utils.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +44,14 @@ public class ProductRestController {
     @DeleteMapping("/products")
     public int deleteProduct(@RequestBody Product product){
         return productsService.remove(product);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ProductErrorResponse> handleException(ProductNotFoundException exc) {
+        ProductErrorResponse productErrorResponse = new ProductErrorResponse();
+        productErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        productErrorResponse.setMessage(exc.getMessage());
+        productErrorResponse.setTimestamp(System.currentTimeMillis());
+        return new ResponseEntity<>(productErrorResponse, HttpStatus.NOT_FOUND);
     }
 }
