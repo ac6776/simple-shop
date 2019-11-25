@@ -5,9 +5,9 @@ import com.mysimpleshop.simpleshop.repositories.ProductsRepository;
 import com.mysimpleshop.simpleshop.utils.ProductErrorResponse;
 import com.mysimpleshop.simpleshop.utils.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class ProductsService {
 
     public int remove(Long id){
         productsRepository.deleteById(id);
-        return 200;
+        return HttpStatus.OK.value();
     }
 
     public Product findProductByTitle(String title){
