@@ -12,4 +12,5 @@ public interface ProductsRepository extends PagingAndSortingRepository<Product, 
 //    @Query("SELECT p FROM Product p WHERE id = 1;")
 //    Product findWithIdOne();
     List<Product> findByCostBetween(Double min, Double max);
+    Product findOneByTitle(String title);
 }

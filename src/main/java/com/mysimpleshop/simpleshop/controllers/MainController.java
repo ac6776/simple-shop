@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class MainController {
@@ -52,12 +55,23 @@ public class MainController {
     @GetMapping("/add")
     public String addProductPage(Model model){
         Product product = new Product();
+//        System.out.println(product.getId());
         model.addAttribute("product", product);
         return "add-product";
     }
 
     @PostMapping("/add")
-    public String addProduct(Model model, @ModelAttribute("product") Product product){
+    public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult br, Model model){
+        if (br.hasErrors()){
+            return "add-product";
+        }
+        Product existing = productsService.findProductByTitle(product.getTitle());
+//        if (existing != null){
+        if (existing != null && product.getId() == null){
+            model.addAttribute("product", product);
+            model.addAttribute("productCreationError", "Product title already existed");
+            return "add-product";
+        }
         productsService.saveOrUpdate(product);
         return "redirect:/products/all";
     }

@@ -54,4 +54,8 @@ public class ProductsService {
     public void remove(Product product){
         productsRepository.delete(product);
     }
+
+    public Product findProductByTitle(String title){
+        return productsRepository.findOneByTitle(title);
+    }
 }
