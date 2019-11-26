@@ -37,4 +37,8 @@ public class SystemUser {
     @NotNull(message = "is required")
     @Email
     private String email;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private String phone;
 }
