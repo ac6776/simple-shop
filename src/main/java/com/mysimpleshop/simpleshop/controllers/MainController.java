@@ -25,20 +25,20 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/products")
-    public String showProductsByStartPage(Model model){
-        model.addAttribute("products", productsService.findAllProductsPaged(0));
-        model.addAttribute("pages", productsService.countPages());
-        return "redirect:/products/1";
-    }
+//    @GetMapping("/products")
+//    public String showProductsByStartPage(Model model){
+//        model.addAttribute("products", productsService.findAllProductsPaged(0));
+//        model.addAttribute("pages", productsService.countPages());
+//        return "redirect:/products/1";
+//    }
 
-    @GetMapping("/products/{sid}")
-    public String showProductsByPage(Model model, @PathVariable("sid") int curPage){
-        model.addAttribute("products", productsService.findAllProductsPaged(curPage - 1));
-        model.addAttribute("pages", productsService.countPages());
-        System.out.println(productsService.countPages());
-        return "products";
-    }
+//    @GetMapping("/products/{sid}")
+//    public String showProductsByPage(Model model, @PathVariable("sid") int curPage){
+//        model.addAttribute("products", productsService.findAllProductsPaged(curPage - 1));
+//        model.addAttribute("pages", productsService.countPages());
+//        System.out.println(productsService.countPages());
+//        return "products";
+//    }
 
     @GetMapping("/products/all")
     public String showAllProductsPage(Model model){
@@ -46,11 +46,11 @@ public class MainController {
         return "all-products";
     }
 
-    @PostMapping("/products/all")
-    public String showProductsBetweenMaxAndMin(Model model, @RequestParam("min") Double min, @RequestParam("max") Double max){
-        model.addAttribute("products", productsService.findProductsBetweenMinAndMax(min, max));
-        return "all-products";
-    }
+//    @PostMapping("/products/all")
+//    public String showProductsBetweenMaxAndMin(Model model, @RequestParam("min") Double min, @RequestParam("max") Double max){
+//        model.addAttribute("products", productsService.findProductsBetweenMinAndMax(min, max));
+//        return "all-products";
+//    }
 
     @GetMapping("/add")
     public String addProductPage(Model model){

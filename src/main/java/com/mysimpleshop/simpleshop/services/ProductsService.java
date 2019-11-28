@@ -5,8 +5,10 @@ import com.mysimpleshop.simpleshop.repositories.ProductsRepository;
 import com.mysimpleshop.simpleshop.utils.ProductErrorResponse;
 import com.mysimpleshop.simpleshop.utils.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +27,29 @@ public class ProductsService {
         return (List<Product>) productsRepository.findAll(Sort.by("cost"));
     }
 
-    public List<Product> findAllProductsPaged(int curPage){
-        return productsRepository.findAll(PageRequest.of(curPage, 3)).getContent();
+    public List<Product> getAllProductsWithFilter(Specification<Product> productSpecs) {
+        return (List<Product>)(productsRepository.findAll(productSpecs));
     }
 
-    public int countPages(){
-        return productsRepository.findAll(PageRequest.of(0, 3)).getTotalPages();
+    public Product getProductById(Long id) {
+        return productsRepository.findById(id).orElse(null);
     }
+
+    public Page<Product> getAllProductsByPage(int pageNumber, int pageSize) {
+        return productsRepository.findAll(PageRequest.of(pageNumber, pageSize));
+    }
+
+    public Page<Product> getProductsWithPagingAndFiltering(int pageNumber, int pageSize, Specification<Product> productSpecification) {
+        return productsRepository.findAll(productSpecification, PageRequest.of(pageNumber, pageSize));
+    }
+
+//    public List<Product> findAllProductsPaged(int curPage){
+//        return productsRepository.findAll(PageRequest.of(curPage, 3)).getContent();
+//    }
+//
+//    public int countPages(){
+//        return productsRepository.findAll(PageRequest.of(0, 3)).getTotalPages();
+//    }
 
     public Product saveOrUpdate(Product product){
 //        if(productsRepository.existsById(product.getId())){
@@ -49,13 +67,17 @@ public class ProductsService {
         return productsRepository.findById(id).orElse(null);
     }
 
-    public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
-        return productsRepository.findByCostBetween(min, max);
-    }
+//    public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
+//        return productsRepository.findByCostBetween(min, max);
+//    }
 
     public int remove(Long id){
         productsRepository.deleteById(id);
         return HttpStatus.OK.value();
+    }
+
+    public boolean isProductWithTitleExists(String productTitle) {
+        return productsRepository.findOneByTitle(productTitle) != null;
     }
 
     public Product findProductByTitle(String title){
