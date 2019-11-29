@@ -16,19 +16,19 @@
 
     <body>
 
-        <div th:replace="~{navigation :: navbar(Home)}" />
-        <div class="container">
-            <h1 th:text="#{greeting}" />
+<!--        <div th:replace="~{navigation :: navbar(Home)}" />-->
+<!--        <div class="container">-->
+<!--            <h1 th:text="#{greeting}" />-->
 
-            <p th:each = "i : ${#numbers.sequence(1, 4)}">
-                <span th:text = "'Paragraph #: ' + ${i}" class="text-muted"></span>
-                <strong>
-                    <span th:text = "' Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate dignissimos earum nobis possimus quae quis repudiandae! Consequatur deleniti ducimus enim excepturi exercitationem, fugiat fugit ipsa optio rem voluptatem voluptatum.'">
+<!--            <p th:each = "i : ${#numbers.sequence(1, 4)}">-->
+<!--                <span th:text = "'Paragraph #: ' + ${i}" class="text-muted"></span>-->
+<!--                <strong>-->
+<!--                    <span th:text = "' Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate dignissimos earum nobis possimus quae quis repudiandae! Consequatur deleniti ducimus enim excepturi exercitationem, fugiat fugit ipsa optio rem voluptatem voluptatum.'">-->
 
-                    </span>
-                </strong>
-            </p>
+<!--                    </span>-->
+<!--                </strong>-->
+<!--            </p>-->
 
-        </div>
+<!--        </div>-->
     </body>
 </html>

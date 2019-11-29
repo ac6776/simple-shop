@@ -1,7 +1,7 @@
 package com.mysimpleshop.simpleshop.services;
 
-import com.geekbrains.geekmarketwinter.entites.Category;
-import com.geekbrains.geekmarketwinter.repositories.CategoryRepository;
+import com.mysimpleshop.simpleshop.entities.Category;
+import com.mysimpleshop.simpleshop.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -43,14 +43,6 @@ public class ProductsService {
         return productsRepository.findAll(productSpecification, PageRequest.of(pageNumber, pageSize));
     }
 
-//    public List<Product> findAllProductsPaged(int curPage){
-//        return productsRepository.findAll(PageRequest.of(curPage, 3)).getContent();
-//    }
-//
-//    public int countPages(){
-//        return productsRepository.findAll(PageRequest.of(0, 3)).getTotalPages();
-//    }
-
     public Product saveOrUpdate(Product product){
 //        if(productsRepository.existsById(product.getId())){
 //            Product existedProduct = productsRepository.findById(product.getId()).get();
@@ -66,10 +58,6 @@ public class ProductsService {
     public Product findById(Long id){
         return productsRepository.findById(id).orElse(null);
     }
-
-//    public List<Product> findProductsBetweenMinAndMax(Double min, Double max){
-//        return productsRepository.findByCostBetween(min, max);
-//    }
 
     public int remove(Long id){
         productsRepository.deleteById(id);

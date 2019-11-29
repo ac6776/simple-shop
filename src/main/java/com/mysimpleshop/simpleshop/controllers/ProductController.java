@@ -6,6 +6,7 @@ import com.mysimpleshop.simpleshop.services.CategoryService;
 import com.mysimpleshop.simpleshop.services.ImageSaverService;
 import com.mysimpleshop.simpleshop.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +38,45 @@ public class ProductController {
         this.imageSaverService = imageSaverService;
     }
 
+    @GetMapping("/all")
+    public String showAllProductsPage(Model model){
+        model.addAttribute("products", productsService.findAllProducts());
+        return "all-products";
+    }
+
+    @GetMapping("/about/{sid}")
+    public String showInfoPage(Model model, @PathVariable("sid") Long id){
+        model.addAttribute("product", productsService.findById(id));
+        return "product";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/add")
+    public String addProductPage(Model model){
+        Product product = new Product();
+//        System.out.println(product.getId());
+        model.addAttribute("product", product);
+        return "add-product";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/add")
+    public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult br, Model model){
+        if (br.hasErrors()){
+            return "add-product";
+        }
+        Product existing = productsService.findProductByTitle(product.getTitle());
+//        if (existing != null){
+        if (existing != null && product.getId() == null){
+            model.addAttribute("product", product);
+            model.addAttribute("productCreationError", "Product title already existed");
+            return "add-product";
+        }
+        productsService.saveOrUpdate(product);
+        return "redirect:/products/all";
+    }
+
+    @Secured("ROLE_ADMIN")
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable(name = "id") Long id) {
         Product product = productsService.findById(id);
@@ -46,9 +86,11 @@ public class ProductController {
         }
         model.addAttribute("product", product);
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "/edit-product";
+//        return "/edit-product";
+        return "/add-product";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/edit")
     public String processProductAddForm(@Valid @ModelAttribute("product") Product product, BindingResult theBindingResult, Model model, @RequestParam("file") MultipartFile file) {
         if (product.getId() == 0 && productsService.isProductWithTitleExists(product.getTitle())) {
@@ -57,7 +99,8 @@ public class ProductController {
 
         if (theBindingResult.hasErrors()) {
             model.addAttribute("categories", categoryService.getAllCategories());
-            return "edit-product";
+//            return "edit-product";
+            return "add-product";
         }
 
         if (!file.isEmpty()) {
@@ -69,6 +112,6 @@ public class ProductController {
         }
 
         productsService.saveOrUpdate(product);
-        return "redirect:/shop";
+        return "redirect:/";
     }
 }

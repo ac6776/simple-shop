@@ -1,6 +1,6 @@
 package com.mysimpleshop.simpleshop.repositories;
 
-import com.geekbrains.geekmarketwinter.entites.Category;
+import com.mysimpleshop.simpleshop.entities.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -22,75 +22,7 @@ public class MainController {
 
     @GetMapping("/")
     public String showHomePage(){
-        return "index";
+        return "redirect:/shop";
     }
 
-//    @GetMapping("/products")
-//    public String showProductsByStartPage(Model model){
-//        model.addAttribute("products", productsService.findAllProductsPaged(0));
-//        model.addAttribute("pages", productsService.countPages());
-//        return "redirect:/products/1";
-//    }
-
-//    @GetMapping("/products/{sid}")
-//    public String showProductsByPage(Model model, @PathVariable("sid") int curPage){
-//        model.addAttribute("products", productsService.findAllProductsPaged(curPage - 1));
-//        model.addAttribute("pages", productsService.countPages());
-//        System.out.println(productsService.countPages());
-//        return "products";
-//    }
-
-    @GetMapping("/products/all")
-    public String showAllProductsPage(Model model){
-        model.addAttribute("products", productsService.findAllProducts());
-        return "all-products";
-    }
-
-//    @PostMapping("/products/all")
-//    public String showProductsBetweenMaxAndMin(Model model, @RequestParam("min") Double min, @RequestParam("max") Double max){
-//        model.addAttribute("products", productsService.findProductsBetweenMinAndMax(min, max));
-//        return "all-products";
-//    }
-
-    @GetMapping("/add")
-    public String addProductPage(Model model){
-        Product product = new Product();
-//        System.out.println(product.getId());
-        model.addAttribute("product", product);
-        return "add-product";
-    }
-
-    @PostMapping("/add")
-    public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult br, Model model){
-        if (br.hasErrors()){
-            return "add-product";
-        }
-        Product existing = productsService.findProductByTitle(product.getTitle());
-//        if (existing != null){
-        if (existing != null && product.getId() == null){
-            model.addAttribute("product", product);
-            model.addAttribute("productCreationError", "Product title already existed");
-            return "add-product";
-        }
-        productsService.saveOrUpdate(product);
-        return "redirect:/products/all";
-    }
-
-    @GetMapping("/about/{sid}")
-    public String showInfoPage(Model model, @PathVariable("sid") Long id){
-        model.addAttribute("product", productsService.findById(id));
-        return "about";
-    }
-
-    @GetMapping("/edit/{sid}")
-    public String editProductPage(Model model, @PathVariable("sid") Long id){
-        model.addAttribute("product", productsService.findById(id));
-        return "add-product";
-    }
-
-    @GetMapping("/rm/{sid}")
-    public String removeProduct(Model model, @PathVariable("sid") Long id){
-        productsService.remove(id);
-        return "redirect:/products/all";
-    }
 }

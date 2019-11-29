@@ -27,8 +27,8 @@
                         <li class="nav-item" th:classappend="${activeTab == 'Home' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/}">Home</a>
                         </li>
-                        <li class="nav-item" th:classappend="${activeTab == 'Products' ? 'active' : ''}">
-                            <a class="nav-link" th:href="@{/products}">Products</a>
+                        <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
+                            <a class="nav-link" th:href="@{/shop}">Shop</a>
                         </li>
                         <li class="nav-item" th:classappend="${activeTab == 'About' ? 'active' : ''}">
                             <a class="nav-link" th:href="@{/about}">About</a>
@@ -42,9 +42,12 @@
                         <li sec:authorize="isAnonymous()" class="nav-item">
                             <a class="nav-link" th:href="@{/registration/showRegistrationForm}">Registration</a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/cart}">Shopping Cart</a>
+                        </li>
                         <li sec:authorize="hasRole('ADMIN')" class="nav-item"
-                            th:classappend="${activeTab == 'AddProduct' ? 'active' : ''}">
-                            <a class="nav-link" th:href="@{/add}">Add product</a>
+                            th:classappend="${activeTab == 'AdminPanel' ? 'active' : ''}">
+                            <a class="nav-link" th:href="@{/admin}">Admin Panel</a>
                         </li>
                         <li sec:authorize="isAuthenticated()" class="nav-item">
                             <form th:action="@{/logout}" method="POST">

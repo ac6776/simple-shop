@@ -55,10 +55,10 @@ CREATE TABLE products (
   id	                INT(11) NOT NULL AUTO_INCREMENT,
   category_id           INT(11) NOT NULL,
   vendor_code           VARCHAR(8) NOT NULL,
-  title                 VARCHAR(255) NOT NULL,
+  title					VARCHAR(255) NOT NULL,
   short_description     VARCHAR(1000) NOT NULL,
   full_description      VARCHAR(5000) NOT NULL,
-  price                 DECIMAL(8,2) NOT NULL,
+  cost					DECIMAL(8,2) NOT NULL,
   create_at             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_at             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
@@ -152,36 +152,34 @@ VALUES
 
 INSERT INTO categories (title)
 VALUES
-("Grocery"),
-("Lifestyle");
-("Electronics");
+('Grocery'),
+('Lifestyle'),
+('Electronics');
 
 INSERT INTO orders_statuses (title)
 VALUES
-("Created"),
-("Payed"),
-("Sent"),
-("Recieved");
+('Created'),
+('Payed'),
+('Sent'),
+('Received');
 
-INSERT INTO products (category_id, vendor_code, title, short_description, full_description, cost, create_at, update_at)
+INSERT INTO products (category_id, vendor_code, title, short_description, full_description, cost)
 VALUES
-(3, "00000001","20\" Телевизор Samsung UE20NU7170U", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 30.99),
-(3, "00000002", "Smartphone", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 749.99),
-(2, "00000003", "Bicycle", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 2499.99),
-(3, "00000004", "Camera", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 349.49),
-(3, "00000005", "Game Console" "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 250.0),
-(2, "00000006", "Guitar", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 1499.49),
-(1, "00000007", "Helmet", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 999.99),
-(1, "00000008", "Sunglasses", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 145.0),
-(1, "00000009", "Hummer", "Коротко: Хороший телевизор Samsung 20", "LED телевизор Samsung 20", 9.99);
+(3, '00000001','20 Телевизор Samsung UE20NU7170U', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 30.99),
+(3, '00000002', 'Smartphone', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 749.99),
+(2, '00000003', 'Bicycle', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 2499.99),
+(3, '00000004', 'Camera', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 349.49),
+(3, '00000005', 'Game Console', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 250.00),
+(2, '00000006', 'Guitar', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 1499.49),
+(1, '00000007', 'Helmet', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 999.99),
+(1, '00000008', 'Sunglasses', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 145.00),
+(1, '00000009', 'Hummer', 'Коротко: Хороший телевизор Samsung 20', 'LED телевизор Samsung 20', 9.99);
 
 INSERT INTO products_images (product_id, path)
 VALUES
-(1, "2.jpg");
+(1, '2.jpg');
 
 INSERT INTO delivery_addresses (user_id, address)
 VALUES
-(1, "18a Diagon Alley"),
-(1, "4 Privet Drive");
-
-
+(1, '18a Diagon Alley'),
+(1, '4 Privet Drive');
